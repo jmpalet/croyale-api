@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: croyale-api
+  labels:
+    app: croyale
+spec:
+  selector:
+    matchLabels:
+      app: croyale
+      tier: api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: croyale
+        tier: api
+    spec:
+      containers:
+      - name: croyale-api
+        image: gcr.io/croyale/croyale-api:v1
+        imagePullPolicy: Always
+        env:
+          - name: REDIS_HOST
+            value: "croyale-redis-service"
+          - name: REDIS_PORT
+            value: "6379"
+          - name: API_HOST
+            value: "https://api.clashroyale.com/v1"
+          - name: API_TOKEN
+            value: "CLASH_ROYALE_API_TOKEN"
+        ports:
+        - containerPort: 5000

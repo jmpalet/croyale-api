@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: croyale-redis
+  labels:
+    app: croyale
+spec:
+  selector:
+    matchLabels:
+      app: croyale
+      tier: redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: croyale
+        tier: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379
