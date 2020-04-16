@@ -1,0 +1,19 @@
+version: '3.5'
+services:
+  flask:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - API_HOST=https://api.clashroyale.com/v1
+      - API_TOKEN=CLASH_ROYALE_API_TOKEN
+    volumes:
+      - .:/opt/croyale
+    depends_on:
+      - redis
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
