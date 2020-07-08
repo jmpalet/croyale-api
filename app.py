@@ -18,7 +18,7 @@ if os.environ.get("REDIS_HOST") and os.environ.get("REDIS_PORT"):
     )
 allowed_clan_tags = [
     '2PUGVU8U',
-    '8R00L999',
+    '2GCRPJ0',
 ]
 
 
